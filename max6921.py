@@ -29,6 +29,7 @@ class VFD():
         self._size = len(self._digits)
         # Get character map
         self._charmap = build_charmap(self._segments)
+        # Initialize the print buffer
         self.print(" trans.rights")
         # Initiate SPI
         self._spi = busio.SPI(board.SCK, MOSI=board.MOSI)
@@ -59,14 +60,11 @@ class VFD():
                 # Add an offset if this character is a period
                 if self._print_buffer[digit + offset] == ".":
                     offset += 1
-                character = concat(self._digits[digit], 
+                character = concat(self._digits[digit],
                   self._charmap[self._print_buffer[digit + offset]])
                 # If the next character is a period, display it on this character
                 if self._print_buffer[digit + offset + 1] == ".":
                     character = concat(character, self._charmap["."])
-                # If this character is a space, we can skip it
-                if self._print_buffer[digit + offset] == " ":
-                    continue
             except IndexError:
                 # If we're out of text to display, we don't need to do anything
                 pass
