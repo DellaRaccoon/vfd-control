@@ -4,12 +4,34 @@ Control Vacuum Fluorescent Displays with a MAX6921 Chip
 For use with CircuitPython. Not an official CircuitPython library or an official Maxim library.
 
 # What are Vacuum Fluoresent Displays?
-Vacuum Fluorescent Displays are somewhere between nixie tubes, LED displays, and LCDs. During the cold war, they were used as the displays in calculators, alarm clocks, car dashboards, home stereos, and VCRs. In modern times, you can still find them being used in microwaves and cash registers. They generally glow with a blueish-green light, altho displays with some green and some red segments do exist, as do some with all red. You can search "vfd tube" on ebay and find a lot of cool models out there.
+Vacuum Fluorescent Displays are somewhere between nixie tubes, LED displays, and LCDs. During the cold war, they were used as the displays in calculators, alarm clocks, car dashboards, home stereos, and VCRs. In modern times, you can still find them being used in microwaves and cash registers. They generally glow with a blueish-green light, altho other colors are also available. You can search "vfd tube" on ebay and find a lot of cool models out there.
 
 This library is intended for controlling the calculator and clock style of VFDs that are basically just a series of 7-segment displays in a row.
 
 # How do they work?
-I'll add some diagrams for this at some point, but the basic rundown is that there's 2 pins for low voltage power (3v works on every model i've tested so far) and ground. These seem to pretty much always be the outer-most pins on the board. Then there's a bunch of pins for higher voltage power (12v has worked for me so far, but more may be better, depending on your display) going to each digit and segment. Send power to one digit and one or more segments at the same time to create one character.
+I'll be using the ILC2-12/8L for all the examples here. It's the display from the Elektronika MK-52, a scientific calculator notable for being flown by the Soviet Union on some Soyuz missions and on MIR to be used as a backup if there was a problem with the rendezvous computer:
+
+![ILC2-12/8L Powered Off](diagrams/00.png)
+
+There's 2 types of pins on a VFD tube: the filament and the grid. In my diagram, i've marked the filament pins as + and -, altho they're not actually polarized at all. We want to apply low voltage across the filament pins, just enough that the filament wires barely glow, usually something in the 2 or 3 volt range:
+
+![Glowing Filaments](diagrams/01.png)
+
+All the other pins are for the grid. Pins 1-12 at the bottom of my screen are for the digits and pins A-H along the top row are for the segments. I'm using H to represent the decimal point instead of the more common DP, because reasons. To get a segment to light up, apply positive higher voltage (somewhere between 9 and 60 volts, depending on your display, altho 12v has worked pretty well for me on every display i've tried so far) across a segment pin and a digit pin:
+
+![A Single Lit up Segment](diagrams/02.png)
+
+To get a whole character out of this, light up multiple segments of a single digit:
+
+![A Single Lit up Character](diagrams/03.png)
+
+Of course, if you power up multiple digits at the same time, you get copies of the same character on all those digits:
+
+![ddddd](diagrams/04.png)
+
+So what we need to do is light up each character we want to display one-at-a-time, in quick succession. Luckily, each segment takes a little bit of time to stop glowing once it's lost power, so we get pretty good persistence with this method:
+
+![Look! I wrote my name!](diagrams/05.gif)
 
 # Wiring
 I'll add some diagrams for this at some point. Check out the MAX6921 datasheet for details in the meantime.
