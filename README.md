@@ -23,7 +23,7 @@ It's also the display that got me started looking at VFDs, and it's nice because
 
 <tr><td width="300" align="center"><img src="diagrams/04.png" width="300" alt="ddddd"></td><td>Of course, if you power up multiple digits at the same time, you get copies of the same character on all those digits.</td></tr>
 
-<tr><td width="300" align="center"><img src="diagrams/05.gif" width="300" alt="Look! I wrote my name!"></td><td>What we need to do is light up each character we want to display one-at-a-time, in quick succession. Luckily, each segment takes a little bit of time to stop glowing once it's lost power, so we get pretty good persistence with this method.</td></tr></table>
+<tr><td width="300" align="center"><img src="diagrams/05.gif" width="300" alt="Look! I wrote my name!"></td><td>What we need to do is light up each character we want to display one-at-a-time, in quick succession. Luckily, each segment takes a little bit of time to stop glowing once it's lost power, so we get pretty good persistence with this method, altho the character that's actively being lit up does tend to be noticably brighter than the other characters.</td></tr></table>
 
 # Wiring
 I'll add some diagrams for this at some point. Check out the MAX6921 datasheet for details in the meantime.
@@ -37,26 +37,11 @@ Pro tips:
 I plan on adding detailed instructions in the future. See code.py for some example code in the meantime.
 
 # Troubleshooting
- * Nothing displays on the screen.
- 
-Start back at the beginning. Check all your wires, make sure you're initializing your VFD object with the right pins, and make sure you're calling the draw function in your main loop.
- 
- * Only one character displays on the screen.
- 
-Make sure the draw function is being called in a loop, not just one time.
- 
- * Some characters display in the wrong order.
- 
-The digit pins are probably listed in the wrong order when instantiating the VFD object.
- 
- * Characters are just jumbled nonsense.
- 
-The segment pins are probably listed in the wrong order when instantiating the VFD object.
- 
- * Every character lights up in order as an 8, and then goes away.
- 
-Double check the pins from the control board to the MAX6921. The clock and data pins might be backwards.
-
- * I'm using more than one MAX6921 chip in my setup, but can't get them to work together.
-
-I >think< this library should work when using multiple MAX6921 chips in tandem, but i haven't actually tested that in reality yet.
+Problem | Strategy
+----|----
+Nothing displays on the screen. | Start back at the beginning. Check all your wires, make sure you're initializing your VFD object with the right pins, and make sure you're calling the draw function in your main loop.
+Only one character displays on the screen. | Make sure the draw function is being called in a loop, not just one time.
+Some characters display in the wrong order. | The digit pins are probably listed in the wrong order when instantiating the VFD object.
+Characters are just jumbled nonsense. | The segment pins are probably listed in the wrong order when instantiating the VFD object.
+Every character lights up in order as an 8, and then goes away. | Double check the pins from the control board to the MAX6921. The clock and data pins might be backwards.
+I'm using more than one MAX6921 chip in my setup, but can't get them to work together. | I >think< this library should work when using multiple MAX6921 chips in tandem, but i haven't actually tested that in reality yet.
