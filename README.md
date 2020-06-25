@@ -14,10 +14,15 @@ This library is intended for controlling the calculator and clock style of VFDs 
 <tr><td width="300" align="center"><img src="diagrams/00.png" width="300" alt="ILC2-12/8L Powered Off"></td><td>I'll be using the ILC2-12/8L for all the examples here. It's the display from the Elektronika MK-52, a programmable scientific calculator notable for being flown by the Soviet Union on some Soyuz missions and on MIR to be used as a backup if there was a problem with the rendezvous computer.
  
 It's also the display that got me started looking at VFDs, and it's nice because it has exactly 20 grid pins, so you only need 1 MAX6921 to control it.</td></tr>
+
 <tr><td width="300" align="center"><img src="diagrams/01.png" width="300" alt="Glowing Filaments"></td><td>There's 2 types of pins on a VFD tube: the filament and the grid. In my diagram, i've marked the filament pins as + and -, altho they're not actually polarized at all. We want to apply low voltage across the filament pins, just enough that the filament wires barely glow, usually something in the 2 or 3 volt range.</td></tr>
+
 <tr><td width="300" align="center"><img src="diagrams/02.png" width="300" alt="A Single Lit up Segment"></td><td>All the other pins are for the grid. Pins 1-12 at the bottom of my screen are for the digits and pins A-H along the top row are for the segments. I'm using H to represent the decimal point instead of the more common DP, because reasons. To get a segment to light up, apply positive higher voltage (somewhere between 9 and 60 volts, depending on your display, altho 12v has worked pretty well for me on every display i've tried so far) across a segment pin and a digit pin.</td></tr>
+
 <tr><td width="300" align="center"><img src="diagrams/03.png" width="300" alt="A Single Lit up Character"></td><td>To get a whole character out of this, light up multiple segments of a single digit.</td></tr>
+
 <tr><td width="300" align="center"><img src="diagrams/04.png" width="300" alt="ddddd"></td><td>Of course, if you power up multiple digits at the same time, you get copies of the same character on all those digits.</td></tr>
+
 <tr><td width="300" align="center"><img src="diagrams/05.gif" width="300" alt="Look! I wrote my name!"></td><td>What we need to do is light up each character we want to display one-at-a-time, in quick succession. Luckily, each segment takes a little bit of time to stop glowing once it's lost power, so we get pretty good persistence with this method.</td></tr></table>
 
 # Wiring
