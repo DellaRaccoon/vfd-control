@@ -4,14 +4,14 @@ Control Vacuum Fluorescent Displays with a MAX6921 Chip
 For use with CircuitPython. Not an official CircuitPython library or an official Maxim library.
 
 # What are Vacuum Fluoresent Displays?
-Vacuum Fluorescent Displays are somewhere between nixie tubes, LED displays, and LCDs. During the cold war, they were used as the displays in calculators, alarm clocks, car dashboards, home stereos, and VCRs. In modern times, you can still find them being used in microwaves and cash registers. They generally glow with a blueish-green light, altho other colors are also available. You can search "vfd tube" on ebay and find a lot of cool models out there.
+Vacuum Fluorescent Displays are somewhere between nixie tubes, LED displays, and LCDs. During the cold war, they were used as the displays in calculators, alarm clocks, car dashboards, home stereos, and VCRs. In modern times, you can still find them being used in microwaves and cash registers. They generally glow with a blueish-green light, altho other colors are also available. Searching "vfd tube" on ebay will yield lots of cool results that can give a project a cool retro feel.
 
 This library is intended for controlling the calculator and clock style of VFDs that are basically just a series of 7-segment displays in a row.
 
 # How do they work?
 
 <table>
-<tr><td width="300" align="center"><img src="diagrams/00.png" width="300" alt="ILC2-12/8L Powered Off"></td><td>I'll be using the ILC2-12/8L for all the examples here. It's the display from the Elektronika MK-52, a programmable scientific calculator notable for being flown by the Soviet Union on some Soyuz missions and on MIR to be used as a backup if there was a problem with the rendezvous computer.
+<tr><td width="300" align="center"><img src="diagrams/00.png" width="300" alt="ILC2-12/8L Powered Off"></td><td>I'll be using the ILC2-12/8L for all the examples here. It's the display from the Elektronika MK-52, a programmable scientific calculator notable for being flown by the Soviet space agency on some Soyuz missions and on MIR to be used as a backup if there was a problem with the rendezvous computer.
  
 It's also the display that got me started looking at VFDs, and it's nice because it has exactly 20 grid pins, so you only need 1 MAX6921 to control it.</td></tr>
 
